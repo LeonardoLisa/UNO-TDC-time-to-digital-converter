@@ -9,7 +9,7 @@ The UNO-TDC has a measurement range of 14ns to 3926ns, and a dead time of 100us 
 ### Hardware
 The hardware is custom made and has to be built following the provided schematic. In future revisions Gerber files for creating an Arduino UNO shield may be added.
 
-![](.\Hardware\tdc_img.jpg)
+![](https://github.com/LeonardoLisa/UNO-TDC/blob/main/Hardware/tdc_img.jpg)
 
 ### Firmware
 The firmware can be directly flashed on the Arduino using the Arduino IDE or with an external programmer.
@@ -34,7 +34,7 @@ Right now it is only compatible with Linux machines.
 3. To start the data acquisition the UNO-TDC must receive a random character on the serial port from the computer.
 
 4. When the acquisitions begins a start up message will appear on the serial port ad will start to continuously stream.
-![](.\Hardware\output_log.svg)
+![](https://github.com/LeonardoLisa/UNO-TDC/blob/main/Hardware/output_log.svg)
 
 5. To interrupt the measurement session close the serial port and disconnect the UNO-TDC from the computer. 
 
