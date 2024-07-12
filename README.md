@@ -25,7 +25,7 @@ Right now it is only compatible with Linux machines.
 
 ## Usage
 ### Acquiring data
-1. Before starting the data acquisition the serial port on your computer must be configure as follows:
+1. Before starting the data acquisition the serial port on your computer must be configured as follows:
 - Parity = no parity bit
 - Baud rate = 38400 
 
