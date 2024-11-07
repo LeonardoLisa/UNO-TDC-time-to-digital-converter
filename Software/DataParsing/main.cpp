@@ -1,7 +1,7 @@
 /*
  * main.cpp
  *
- * Version: 1.00
+ * Version: 1.10
  * Date: 25/06/2024
  * Author: Caterina Morgavi
  * caterina.morgavi@studenti.unimi.it
@@ -203,8 +203,8 @@ int main(int argc, char **argv)
         remainder = remainder.substr(pos + 1);
 
         /* Compute tof */
-        calcount = (rawMeasurement.cal2 - rawMeasurement.cal1) / (9.0);
-        tof = (rawMeasurement.time * (1.0 / 8000000.0) / (calcount)) * pow(10.0, 9.0);
+        calcount = rawMeasurement.cal2 - rawMeasurement.cal1;
+        tof = (rawMeasurement.time * 562.5) / calcount;
 
         /* Remove stops from data */
         if (tof <= lim_sup)

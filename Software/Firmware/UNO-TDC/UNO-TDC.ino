@@ -1,8 +1,8 @@
 /*
  * UNO-TDC.ino
  * 
- * Version: 1.00
- * Date: 16/05/2024
+ * Version: 1.10
+ * Date: 05/11/2024
  * Authors: Leonardo Lisa and Caterina Morgavi
  * leonardo.lisa@studenti.unimi.it
  * caterina.morgavi@studenti.unimi.it
@@ -34,7 +34,8 @@
 #include <avr/interrupt.h>
 
 /* Data format option */
-// #define EASYDATA
+#define EASYDATA
+//#define RAWDATA
 
 /* TSC7200 enable time */
 #define TDC_ENABLE_TIME 2 // ms
@@ -105,6 +106,10 @@ void setup()
   {
     __asm__("nop\n\t");
   }
+
+  // Only for debug: it checks if the Arduino is correcly reading the tdc7200 registers.
+  // checkRegisters();
+  
   Serial.println(F("$$\\   $$\\$$\\   $$\\ $$$$$$\\   $$\\          $$\\"));
   Serial.println(F("$$ |  $$ $$$\\  $$ $$  __$$\\  $$ |         $$ |"));
   Serial.println(F("$$ |  $$ $$$$\\ $$ $$ /  $$ $$$$$$\\   $$$$$$$ |$$$$$$$\\"));
@@ -155,6 +160,15 @@ void loop()
 void printData(uint8_t _index)
 {
 #ifdef EASYDATA
+  double Difference = static_cast<uint32_t>(buf[_index].cal2_r[2] - buf[_index].cal1_r[2])*(uint32_t)65536 +
+                        static_cast<uint32_t>(buf[_index].cal2_r[1] - buf[_index].cal1_r[1])*(uint32_t)256 +
+                        static_cast<uint32_t>(buf[_index].cal2_r[0] - buf[_index].cal1_r[0]);
+  double rawTime = static_cast<uint32_t>(buf[_index].time1_r[2])*(uint32_t)65536 +
+                   static_cast<uint32_t>(buf[_index].time1_r[1])*(uint32_t)256 +
+                   static_cast<uint32_t>(buf[_index].time1_r[0]);
+  Serial.print(F("ToF is: "));
+  Serial.println((rawTime * 562.5) / Difference);
+#elif defined(RAWDATA)
   Serial.print(F("time1_r = "));
   Serial.print(buf[_index].time1_r[2]);
   Serial.write(' ');
@@ -175,8 +189,7 @@ void printData(uint8_t _index)
   Serial.print(buf[_index].cal2_r[1]);
   Serial.write(' ');
   Serial.println(buf[_index].cal2_r[0]);
-#endif
-#ifndef EASYDATA
+#else 
   Serial.print(buf[_index].time1_r[2]);
   Serial.write(' ');
   Serial.print(buf[_index].time1_r[1]);
@@ -264,12 +277,12 @@ void initializeTDC(void)
   // Port D
   DDRD &= (~TRIG);
   PORTD &= (~TRIG);
+  //PORTD |= TRIG; // Enable 50k internal pullup resistor.
   // Port B
   DDRB |= CS | SCLK | DOUT | ENABLE;
   DDRB &= ~DIN;
   PORTB |= ENABLE | CS;
   PORTB &= ~(SCLK | DOUT | DIN);
-  // Port C
   sei(); // Enable interrupts
 
   delay(TDC_ENABLE_TIME);

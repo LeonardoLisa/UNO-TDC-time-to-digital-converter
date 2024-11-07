@@ -1,0 +1,20 @@
+### Footprint positions - created on 2024-11-06T17:06:54+0100 ###
+### Printed by KiCad version 8.0.3
+## Unit = mm, Angle = deg.
+## Side : bottom
+# Ref     Val               Package                          PosX       PosY       Rot  Side
+C1        100n              C_0603_1608Metric             99.1470   -62.9920    0.0000  bottom
+C2        10n               C_0603_1608Metric             99.1470   -64.6430    0.0000  bottom
+C3        1u                C_0603_1608Metric             99.1470   -66.2940    0.0000  bottom
+C4        10n               C_0603_1608Metric             99.1470   -60.9600  180.0000  bottom
+C5        100n              C_0603_1608Metric            120.0258   -74.3334  -90.0000  bottom
+C6        100n              C_0603_1608Metric            108.6590   -73.6600  180.0000  bottom
+D1        D_TVS             D_0402_1005Metric            121.4990   -68.0720   90.0000  bottom
+D2        D_TVS             D_0402_1005Metric            121.4990   -70.5890  -90.0000  bottom
+R1        50R               R_0603_1608Metric            119.9750   -67.6910   90.0000  bottom
+R2        50R               R_0603_1608Metric            119.9750   -70.9930  -90.0000  bottom
+R3        1k                R_0603_1608Metric            110.3860   -65.2780  180.0000  bottom
+U1        TDC7200           TSSOP-14_4.4x5mm_P0.65mm     104.7350   -67.3100  180.0000  bottom
+U2        TXB0108PW         TSSOP-20_4.4x6.5mm_P0.65mm   114.8950   -71.3030    0.0000  bottom
+U4        ASFLMB-16.000MHZ  ASFLMB-XXMHZ-LY-T            103.4650   -59.9440    0.0000  bottom
+## End
